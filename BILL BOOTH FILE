@@ -1,0 +1,73 @@
+#include “SDL_Plotter.h”
+#include <iostream>
+Using namespace std;
+
+Strict point{
+
+  Int x, y;
+
+  Point ()
+  {
+   X = y = 0;
+  }
+      Point (int a, int b)
+  {
+      X = a;
+      Y = b;
+  }
+};
+
+
+Class line{
+
+ Private: 
+    Point p1;
+    Point p2;
+
+Public: 
+  Void setP1(point p)
+  {
+    P1 = p;
+  }
+  Void setP2(point p)
+  {
+    P2 = p;
+  }
+
+  Bool slope (double& a){
+  Bool flag = false;
+
+  If (p1.x != p2.x)
+  {
+  Flag = true:
+  A = static_cast_double>(p1.x - p2.y) / (p1.x - p2.x)
+  }
+
+  Return flag;
+}
+
+    Double y_inter(){
+    Double m;
+    Slope(m);
+    
+  Return p1.y - m * p1.x;
+  }
+};
+
+
+Int main (int argc, char** argv)
+
+{
+
+SDL_Plotter g(600,600)
+
+While (g.getQuit())
+{
+     If g.khit()){
+
+        Switch(g.getKey()){
+             }
+
+   g.plotPixel(rand()%600, rand()%600, 0,0,0);
+   g.update()
+}
