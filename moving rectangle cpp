@@ -87,7 +87,7 @@ int main(int argc, char ** argv) {
         {
             for (int row = rectPosY; row < height + rectPosY; ++row)
             {
-                g.plotpixel (col, row, 0, 0, 255);
+                g.plotPixel (col, row, 0, 0, 255);
             }
         }
 
