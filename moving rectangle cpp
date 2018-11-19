@@ -38,31 +38,31 @@ int main(int argc, char ** argv) {
         }
         else if (g.getKey() == RIGHT_ARROW)
         {
-            rectPosY = min(rectPosX + 1, windowWidth - width);
+            rectPosX = min(rectPosX + 1, windowWidth - width);
         }
 
 
 
         // Mario Movement
-        if (g.getKey() == UP_ARROW)
-        {
-            mario.move (0, -1);
-        }
-        else if (g.getKey() == DOWN_ARROW)
-        {
-            mario.move (0, 1);
-        }
-        else if (g.getKey() == LEFT_ARROW)
-        {
-            mario.move (-1, 0);
-        }
-        else if (g.getKey() == RIGHT_ARROW)
-        {
-            mario.move (1, 0);
-        }
+        //if (g.getKey() == UP_ARROW)
+        //{
+        //   mario.move (0, -1);
+        //}
+        //else if (g.getKey() == DOWN_ARROW)
+        //{
+        //    mario.move (0, 1);
+        //}
+        //else if (g.getKey() == LEFT_ARROW)
+        //{
+        //    mario.move (-1, 0);
+        //}
+        //else if (g.getKey() == RIGHT_ARROW)
+        //{
+        //    mario.move (1, 0);
+        //}
 
         // Draw Mario
-        mario.draw(g);
+        //mario.draw(g);
 
 
 
