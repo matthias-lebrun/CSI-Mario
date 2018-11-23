@@ -8,37 +8,31 @@ using namespace std;
 
 const int windowHeight = 600;
 const int windowWidth = 1000;
+
 int width;
 int height;
 
-
-double line(double, double, double, double);
 double jump (double);
 
 SDL_Plotter g(windowHeight, windowWidth);
 
 
 int main(int argc, char ** argv) {
-    
-//    const int windowHeight = 600;
-//    const int windowWidth = 1000;
-    
-    
+
+
+
     // our Rectangle
     int rectPosX = 500;
     int rectPosY = 560;
     width = 20;
     height = 20;
-    
-    
-    
+
 //    Player mario;
-//
-//
+
 //    bool stopped = false;
 //    int jumpPosition = 0;
 
-    
+
     while (!g.getQuit())
     {
         // Grab Input
@@ -62,7 +56,11 @@ int main(int argc, char ** argv) {
             rectPosX = min(rectPosX + 3, windowWidth - width);
         }
         
-    
+        if (g.getKey() == ' ')
+        {
+            rectPosY = max(rectPosY - 20, 0);
+        }
+
 
 //      Mario Movement
 //      if (g.getKey() == UP_ARROW)
@@ -82,16 +80,10 @@ int main(int argc, char ** argv) {
 //          mario.move (1, 0);
 //      }
 //    }
-    
-    
 
 
-//     Draw Mario
-//    mario.draw();
-
-    
     //Draw ===================================================
-        
+
     // Reset background color
     for (int col = 0; col < windowWidth; ++col)
     {
@@ -100,112 +92,113 @@ int main(int argc, char ** argv) {
             g.plotPixel (col, row, 0, 0, 0);
         }
     }
-        
-        
+
+
     // Draw and color square
     for (int col = rectPosX; col < width + rectPosX; ++col)
     {
         for (int row = rectPosY; row < height + rectPosY; ++row)
         {
-            g.plotPixel (col, row, 255, 255, 255);
+            g.plotPixel (col, row, 255, 0, 0);
         }
     }
-        
-        
-    
-        
-        
+
+
+
+
+
 //      Draw line for mario to walk on
-
-
-    
     for (int col = 800; col < width + 1000; ++col)
         {
-            for (int row = 250; row < height + 250; ++row)
-            {
-                g.plotPixel (col, row, 0, 0, 255);
-            }
-        }
-        
-    for (int col = 400; col < width + 700; ++col)
-        {
-            for (int row = 250; row < height + 250; ++row)
-            {
-                g.plotPixel (col, row, 0, 0, 255);
-            }
-        }
-        
-        
-    for (int col = 0; col < width + 200; ++col)
-        {
-            for (int row = 250; row < height + 250 ; ++row)
-            {
-                g.plotPixel (col, row, 0, 0, 255);
-            }
-        }
-        
-    for (int col = 300; col < width + 600; ++col)
-        {
-            for (int row = 250; row < height + 250; ++row)
-            {
-                g.plotPixel (col, row, 0, 0, 255);
-            }
-        }
-        
-    for (int col = 600; col < width + 1000; ++col)
-        {
-            for (int row = 400; row < height + 400; ++row)
-            {
-                g.plotPixel (col, row, 0, 0, 255);
-            }
-        }
-        
-    for (int col = 0; col < width + 400; ++col)
-        {
-            for (int row = 400; row < height + 400; ++row)
+            for (int row = 300; row < height + 300; ++row)
             {
                 g.plotPixel (col, row, 0, 0, 255);
             }
         }
 
-    for (int col = 200; col < width + 2300; ++col)
+    for (int col = 400; col < width + 700; ++col)
+        {
+            for (int row = 300; row < height + 300; ++row)
+            {
+                g.plotPixel (col, row, 0, 0, 255);
+            }
+        }
+
+    for (int col = 0; col < width + 200; ++col)
+        {
+            for (int row = 300; row < height + 300 ; ++row)
+            {
+                g.plotPixel (col, row, 0, 0, 255);
+            }
+        }
+
+    for (int col = 300; col < width + 600; ++col)
+        {
+            for (int row = 300; row < height + 300; ++row)
+            {
+                g.plotPixel (col, row, 0, 0, 255);
+            }
+        }
+
+    for (int col = 600; col < width + 1000; ++col)
+        {
+            for (int row = 450; row < height + 450; ++row)
+            {
+                g.plotPixel (col, row, 0, 0, 255);
+            }
+        }
+
+    for (int col = 0; col < width + 400; ++col)
+        {
+            for (int row = 450; row < height + 450; ++row)
+            {
+                g.plotPixel (col, row, 0, 0, 255);
+            }
+        }
+
+    for (int col = 0; col < width + 1000; ++col)
         {
             for (int row = 577; row < height + 577; ++ row)
             {
                 g.plotPixel(col, row, 0, 0, 255);
             }
         }
-    
-    
+
+
     for (int col = 0; col < width + 400; ++col)
         {
-            for (int row = 100; row < height + 100; ++row)
+            for (int row = 150; row < height + 150; ++row)
             {
                 g.plotPixel (col, row, 0, 0, 255);
             }
         }
+        
+        
         
     for (int col = 550; col < width + 1000; ++col)
         {
-            for (int row = 100; row < height + 100; ++row)
+            for (int row = 150; row < height + 150; ++row)
             {
                 g.plotPixel (col, row, 0, 0, 255);
             }
         }
-    
+
+
         
         
+        // Jumping of player
         
-        
-        
-        
+
         g.update();
         if (g.kbhit())
         {
             g.getKey();
         }
-    
-        
+
+
     }
     return 0;
 }
+
+
+
