@@ -1,73 +1,81 @@
-#include “SDL_Plotter.h”
+
+
+#include "SDL_Plotter.h"
 #include <iostream>
-Using namespace std;
-
-Strict point{
-
-  Int x, y;
-
-  Point ()
-  {
-   X = y = 0;
-  }
-      Point (int a, int b)
-  {
-      X = a;
-      Y = b;
-  }
-};
+#include <iomanip>
 
 
-Class line{
+using namespace std;
 
- Private: 
-    Point p1;
-    Point p2;
-
-Public: 
-  Void setP1(point p)
-  {
-    P1 = p;
-  }
-  Void setP2(point p)
-  {
-    P2 = p;
-  }
-
-  Bool slope (double& a){
-  Bool flag = false;
-
-  If (p1.x != p2.x)
-  {
-  Flag = true:
-  A = static_cast_double>(p1.x - p2.y) / (p1.x - p2.x)
-  }
-
-  Return flag;
-}
-
-    Double y_inter(){
-    Double m;
-    Slope(m);
+struct point{
     
-  Return p1.y - m * p1.x;
-  }
+    int x, y;
+    
+    point ()
+    {
+        x = y = 0;
+    }
+    point (int a, int b)
+    {
+        x = a;
+        y = b;
+    }
 };
 
 
-Int main (int argc, char** argv)
+class line{
+    
+    
+private:
+    point p1;
+    point p2;
+    
+public:
+    void setP1(point p)
+    {
+        p1 = p;
+    }
+    void setP2(point p)
+    {
+        p2 = p;
+    }
+    
+    bool slope (double& a){
+        bool flag = false;
+        
+        if (p1.x != p2.x)
+        {
+            flag = true;
+            a = static_cast_double(p1.x - p2.y) / (p1.x - p2.y);
+            
+        }
+        
+        return flag;
+    }
+    
+    double y_inter()
+    {
+        double m;
+        slope(m);
+        
+        return p1.y - m * p1.x;
+    }
+};
+
+int main(int argc, char** argv)
 
 {
-
-SDL_Plotter g(600,600)
-
-While (g.getQuit())
-{
-     If g.khit()){
-
-        Switch(g.getKey()){
-             }
-
-   g.plotPixel(rand()%600, rand()%600, 0,0,0);
-   g.update()
-}
+    
+    SDL_Plotter g(600, 600);
+    
+    while (g.getQuit())
+    {
+        if (g.kbhit())
+        {
+            
+            switch(g.getKey()){
+            }
+            
+            g.plotPixel(rand()%600, rand()%600, 0,0,0);
+            g.update();
+        }
