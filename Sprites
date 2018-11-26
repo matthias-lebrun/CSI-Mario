@@ -1,0 +1,21 @@
+bool loadMedia()
+{
+  bool success = true;
+  
+  if (!SpriteSheetTexture.loadFromFile("WhateverFileName")
+  {
+    printf("Failed to laod sprite sheet texture!\n");
+    success = false;
+  }
+  else
+  {
+  //Setting sprites
+  gMarioSheet[ 0 ].x = 0;
+  gMarioSheet[ 0 ].y = 0;
+  gMarioSheet[ 0 ].w = 100;
+  gMarioSheet[ 0 ].h = 100;
+  //Do this for each sprite and their individual coordinates. We need the exact file names and everything though. 
+  }
+  
+  return success;
+}
