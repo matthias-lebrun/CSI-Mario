@@ -1,0 +1,14 @@
+void processGravity()
+{
+  if(isOnPlatform == false)
+  
+  dy += gravityAcceleration;
+}
+
+class Player
+{
+Position(x,y)
+Velocity(dx,dy)
+bool isOnPlatform (Probably need something that will check to see if y value is changing and will return true if y value isn't changing)
+
+};
