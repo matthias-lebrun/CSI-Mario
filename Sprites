@@ -19,3 +19,26 @@ bool loadMedia()
   
   return success;
 }
+
+void GameObject::SetPosition(float x, float y)
+{
+  if(isLoaded = true)
+  {
+    sprite.SetPosition(x.y);
+  }
+}
+
+void GameObject::Load(std::string whateverfilename)
+{
+  if(image.LoadFromFile(filename) == false)
+  {
+  _filename = "";
+  _isLoaded = false;
+  }
+  else
+  {
+  _filename = filename;
+  _sprite.SetImage(_image);
+  _isLoaded = true;
+  }
+}
