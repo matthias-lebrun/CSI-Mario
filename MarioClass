@@ -1,0 +1,25 @@
+#ifndef MARIO_H_INCLUDED
+#define MARIO_H_INCLUDED
+
+struct GameObject{
+enum { MARIO, PLATFORM} type;
+int x,y;
+
+union{
+    struct {int positionX, positionY;} mario;
+};
+
+};
+
+class Movement{
+int vx, vy;
+protected:
+    void move();
+public:
+    void setVelocityX (int)
+    void setVelocityY (int)
+};
+
+
+void updateObject(GameObject& object);
+#endif // MARIO_H_INCLUDED
