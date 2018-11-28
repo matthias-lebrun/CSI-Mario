@@ -6,21 +6,22 @@
 
 using namespace std;
 
+// SDL plotter dimensions
 const int windowHeight = 550;
 const int windowWidth = 1000;
 
 int width;
 int height;
 
-
+// Connect code with SDL Plotter
 SDL_Plotter g(windowHeight, windowWidth);
 
 
 int main(int argc, char ** argv) {
 
-//    Player mario;
+    // Player mario;
 
-    // our Rectangle
+    // our Rectangle dimensions and location
     int PosX = 500;
     int PosY = 0;
     width = 20;
@@ -31,46 +32,52 @@ int main(int argc, char ** argv) {
     int tMiddle = 220;
     int top = 100;
     int NearBottom = 400;
-//    int base = 560;
+    int help = 530;
+    //int base = 560;
     
+    // Y position variables
     int nMY = 226;
     int nTM = 196;
     int nT = 76;
     int nNB = 376;
-    
-    
-    
+    int me = 506;
     
 
     bool stopped = false;
 
 
+    // Create loop that doesn't stop
     while (!g.getQuit())
     {
-        // Grab Input
+        // Grab key input
+        
+        // Space bar input
         if (g.getKey() == ' ')
         {
             PosY = max(PosY - 2, 0);
         }
 
+        // Down arrow input
         else if (g.getKey() == DOWN_ARROW)
         {
             PosY = min(PosY + 2, windowHeight - height);
         }
 
+        // Left arrow input
         else if (g.getKey() == LEFT_ARROW)
         {
             PosX = max(PosX - 2, 0);
 
         }
 
+        // Right arrow input
         else if (g.getKey() == RIGHT_ARROW)
         {
             PosX = min(PosX + 2, windowWidth - width);
         }
         
 
-        // jumping player
+        // jumping player with Space bar input
         if (g.getKey() != ' ' || PosY == windowHeight)
         {
             PosY = min (PosY + 2, windowHeight - height);
@@ -120,9 +127,6 @@ int main(int argc, char ** argv) {
         }
     }
 
-  
-        int help = 530;
-        int me = 506;
 
     // Practice with the base as a platform
         for (int col = 0; col < width + 1000; ++ col)
@@ -429,3 +433,7 @@ int main(int argc, char ** argv) {
 
 
 }
+
+
+
+
