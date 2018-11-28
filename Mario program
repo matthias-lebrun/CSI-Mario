@@ -2,7 +2,7 @@
 #include "SDL_Plotter.h"
 #include <iomanip>
 #include <cstdlib>
-//#include "player.h"
+#include "player.h"
 
 using namespace std;
 
@@ -12,57 +12,77 @@ const int windowWidth = 1000;
 int width;
 int height;
 
-double jump (double);
+int jump(int x, int y);
+
 
 SDL_Plotter g(windowHeight, windowWidth);
 
 
 int main(int argc, char ** argv) {
 
-
+    Player mario;
 
     // our Rectangle
-    int rectPosX = 500;
-    int rectPosY = 560;
+    int PosX = 500;
+    int PosY = 0;
     width = 20;
     height = 20;
 
-//    Player mario;
 
-//    bool stopped = false;
-//    int jumpPosition = 0;
+
+    bool stopped = false;
 
 
     while (!g.getQuit())
     {
         // Grab Input
-        if (g.getKey() == UP_ARROW)
+        if (g.getKey() == ' ')
         {
-            rectPosY = max(rectPosY - 3, 0);
+            PosY = max(PosY - 3, 0);
         }
 
         else if (g.getKey() == DOWN_ARROW)
         {
-            rectPosY = min(rectPosY + 3, windowHeight - height);
+            PosY = min(PosY + 3, windowHeight - height);
         }
 
         else if (g.getKey() == LEFT_ARROW)
         {
-            rectPosX = max(rectPosX - 3, 0);
+            PosX = max(PosX - 3, 0);
+            
+            while (g.getKey() == LEFT_ARROW && g.getKey() == ' ')
+            {
+                PosX = max(PosX + 3, windowWidth - width);
+            }
+
         }
 
         else if (g.getKey() == RIGHT_ARROW)
         {
-            rectPosX = min(rectPosX + 3, windowWidth - width);
+            PosX = min(PosX + 3, windowWidth - width);
         }
         
-        if (g.getKey() == ' ')
+
+        // jumping player
+        if (g.getKey() != ' ' || PosY == windowHeight)
         {
-            rectPosY = max(rectPosY - 20, 0);
+            PosY = min (PosY + 3
+                        , windowHeight - height);
+
         }
+        
+        int middle = 300;
+        int tMiddle = 270;
+        int top = 150;
+        int NearBottom = 450;
+        
+        
+        
+    
+        
+        
 
-
-//      Mario Movement
+////      Mario Movement
 //      if (g.getKey() == UP_ARROW)
 //      {
 //          mario.move (0, -1);
@@ -79,7 +99,7 @@ int main(int argc, char ** argv) {
 //      {
 //          mario.move (1, 0);
 //      }
-//    }
+
 
 
     //Draw ===================================================
@@ -95,110 +115,263 @@ int main(int argc, char ** argv) {
 
 
     // Draw and color square
-    for (int col = rectPosX; col < width + rectPosX; ++col)
+    for (int col = PosX; col < width + PosX; ++col)
     {
-        for (int row = rectPosY; row < height + rectPosY; ++row)
+        for (int row = PosY; row < height + PosY; ++row)
         {
             g.plotPixel (col, row, 255, 0, 0);
+            
         }
     }
+        
+  
+        
+    // Draw platform for mario to walk on (i.e base)
+        
+    for (int col = 0; col < width + 1000; ++col)
+    {
+        for (int row = 560; row < height + 580; ++ row)
+        {
+            g.plotPixel(col, row, 0, 0, 255);
+        }
+    }
+        
+        if (PosY >= 560 && PosX >= 0 && PosX < 1000)
+        {
+            PosY = 520;
+        }
+        
 
 
-
-
-
-//      Draw line for mario to walk on
+        
+        
+        
+     // For the platforms on the row 300
     for (int col = 800; col < width + 1000; ++col)
+    {
+        for (int row = middle; row < height + middle; ++row)
         {
-            for (int row = 300; row < height + 300; ++row)
-            {
-                g.plotPixel (col, row, 0, 0, 255);
-            }
-        }
+            g.plotPixel (col, row, 0, 0, 255);
 
-    for (int col = 400; col < width + 700; ++col)
+        }
+    }
+        
+        if (PosY == middle && PosX >= 800 && PosX <= 1000)
         {
-            for (int row = 300; row < height + 300; ++row)
-            {
-                g.plotPixel (col, row, 0, 0, 255);
-            }
+            PosY = 276;
         }
-
+   
+       
+        
     for (int col = 0; col < width + 200; ++col)
+    {
+        for (int row = middle; row < height + middle ; ++row)
         {
-            for (int row = 300; row < height + 300 ; ++row)
+            g.plotPixel (col, row, 0, 0, 255);
+  
+        }
+    }
+        
+        if (PosY == middle && PosX <= 200 && PosX >= 0)
+        {
+            PosY = 276;
+        }
+        
+
+    
+    // For the platform directly in the middle
+    for (int col = 300; col < width + 700; ++col)
+        {
+            for (int row = tMiddle; row < height + tMiddle; ++row)
             {
                 g.plotPixel (col, row, 0, 0, 255);
+                
+            }
+        }
+        
+        if (PosY == tMiddle && PosX <= 700 && PosX >= 300)
+        {
+            PosY = 246;
+        }
+
+      
+        
+   
+        
+        
+   // For the platforms on the row 450
+    for (int col = 600; col < width + 1000; ++col)
+        {
+            for (int row = NearBottom; row < height + NearBottom; ++row)
+            {
+                g.plotPixel (col, row, 0, 0, 255);
+
             }
         }
 
-    for (int col = 300; col < width + 600; ++col)
+        
+        if (PosY == NearBottom && PosX <= 1000 && PosX >= 600)
         {
-            for (int row = 300; row < height + 300; ++row)
+            PosY = 426;
+        }
+
+    for (int col = 0; col < width + 400; ++col)
+        {
+            for (int row = NearBottom; row < height + NearBottom; ++row)
             {
                 g.plotPixel (col, row, 0, 0, 255);
+                
+
             }
         }
+
+        if (PosY == NearBottom && PosX <= 400 && PosX >= 0)
+        {
+            PosY = 426;
+        }
+   
+
+        
+    // For the top platforms (i.e row 150)
+    for (int col = 0; col < width + 400; ++col)
+        {
+            for (int row = top; row < height + top; ++row)
+            {
+                g.plotPixel (col, row, 0, 0, 255);
+                
+            }
+        }
+        if (PosY == top && PosX <= 400 && PosX >= 0)
+        {
+            PosY = 126;
+        }
+
+
 
     for (int col = 600; col < width + 1000; ++col)
         {
-            for (int row = 450; row < height + 450; ++row)
+            for (int row = top; row < height + top; ++row)
             {
                 g.plotPixel (col, row, 0, 0, 255);
+                
+                
             }
         }
-
-    for (int col = 0; col < width + 400; ++col)
+        
+        if (PosY == top && PosX <= 1000 && PosX >= 600)
         {
-            for (int row = 450; row < height + 450; ++row)
-            {
-                g.plotPixel (col, row, 0, 0, 255);
-            }
+            PosY = 126;
         }
-
-    for (int col = 0; col < width + 1000; ++col)
+        else if (PosY == 160 && PosX <= 1000 && PosX >= 600)
         {
-            for (int row = 577; row < height + 577; ++ row)
-            {
-                g.plotPixel(col, row, 0, 0, 255);
-            }
+            PosY = 170;
         }
 
-
-    for (int col = 0; col < width + 400; ++col)
-        {
-            for (int row = 150; row < height + 150; ++row)
-            {
-                g.plotPixel (col, row, 0, 0, 255);
-            }
-        }
-        
-        
-        
-    for (int col = 550; col < width + 1000; ++col)
-        {
-            for (int row = 150; row < height + 150; ++row)
-            {
-                g.plotPixel (col, row, 0, 0, 255);
-            }
-        }
-
-
-        
-        
-        // Jumping of player
+    // Non-Playable characters
         
 
+        
+    // Update the code so it becomes continuous
         g.update();
         if (g.kbhit())
         {
             g.getKey();
+
         }
-
-
+        
+        
+         mario.draw(g);
+        
+       
+        
     }
-    return 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//// SDL EXAMPLE WITH THE RANDOM GREEN DOTS!!!
+//
+////#include <iostream>
+//
+////#include "SDL_Plotter.h"
+//
+////using namespace std;
+//
+////int main(int argc, char ** argv)
+////{
+//
+////    SDL_Plotter g(1000,1000);
+////    bool stopped = false;
+////    bool colored = false;
+////    int x,y, xd, yd;
+////    int R,G,B;
+//
+////    while (!g.getQuit())
+////    {
+////        if(!stopped){
+////            x = rand()%g.getCol();
+////            y = rand()%g.getRow();
+////            R = rand()%256;
+////            G = rand()%256;
+////            B = rand()%256;
+//
+////            for(xd = 0; xd < 10 && x + xd < g.getCol(); xd++ ){
+////                for(yd = 0; yd < 10 && y + yd < g.getRow(); yd++ ){
+////                    if(colored){
+////                        g.plotPixel( x + xd, y + yd, R, G, B);
+////                    }
+////                    else{
+////                        g.plotPixel( x + xd, y + yd, 0, G, 0);
+////                    }
+////
+////                }
+////            }
+////        }
+//
+////        if(g.kbhit()){
+////            g.getKey();
+////        }
+//
+////        if(g.getMouseClick(x,y)){
+////            stopped = !stopped;
+////        }
+//
+////        g.update();
+////    }
+////}
+//
+//
+//
+
+
+
+
+
 }
+
 
 
 
