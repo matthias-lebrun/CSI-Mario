@@ -1,0 +1,23 @@
+
+// sheridan
+//npc movemebt proto code
+
+
+
+
+/* thia code is a little crude but this is
+ essentiall what we want for the npc to move
+ this IS NOT FINISHED DONT USE IT YET/*
+
+
+// WHEN BETWEEN COORDINATES MOVES RIGHT OR JUMPS.
+If(posx >= 0 && <= 250)
+{PosX = max(PosX + 3, windowWidth - width);
+}
+
+
+If(pos× >=0 && <= 250 || PosY == windowHeight)
+{ 
+
+PosY = min (PosY + 3 , windowHeight - height);
+}
