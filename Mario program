@@ -6,13 +6,11 @@
 
 using namespace std;
 
-const int windowHeight = 600;
+const int windowHeight = 550;
 const int windowWidth = 1000;
 
 int width;
 int height;
-
-int jump(int x, int y);
 
 
 SDL_Plotter g(windowHeight, windowWidth);
@@ -20,15 +18,29 @@ SDL_Plotter g(windowHeight, windowWidth);
 
 int main(int argc, char ** argv) {
 
-    Player mario;
+//    Player mario;
 
     // our Rectangle
     int PosX = 500;
     int PosY = 0;
     width = 20;
     height = 20;
-
-
+    
+    // Platform variables
+    int middle = 250;
+    int tMiddle = 220;
+    int top = 100;
+    int NearBottom = 400;
+//    int base = 560;
+    
+    int nMY = 226;
+    int nTM = 196;
+    int nT = 76;
+    int nNB = 376;
+    
+    
+    
+    
 
     bool stopped = false;
 
@@ -38,49 +50,33 @@ int main(int argc, char ** argv) {
         // Grab Input
         if (g.getKey() == ' ')
         {
-            PosY = max(PosY - 3, 0);
+            PosY = max(PosY - 2, 0);
         }
 
         else if (g.getKey() == DOWN_ARROW)
         {
-            PosY = min(PosY + 3, windowHeight - height);
+            PosY = min(PosY + 2, windowHeight - height);
         }
 
         else if (g.getKey() == LEFT_ARROW)
         {
-            PosX = max(PosX - 3, 0);
-            
-            while (g.getKey() == LEFT_ARROW && g.getKey() == ' ')
-            {
-                PosX = max(PosX + 3, windowWidth - width);
-            }
+            PosX = max(PosX - 2, 0);
 
         }
 
         else if (g.getKey() == RIGHT_ARROW)
         {
-            PosX = min(PosX + 3, windowWidth - width);
+            PosX = min(PosX + 2, windowWidth - width);
         }
         
 
         // jumping player
         if (g.getKey() != ' ' || PosY == windowHeight)
         {
-            PosY = min (PosY + 3
-                        , windowHeight - height);
-
+            PosY = min (PosY + 2, windowHeight - height);
         }
         
-        int middle = 300;
-        int tMiddle = 270;
-        int top = 150;
-        int NearBottom = 450;
-        
-        
-        
-    
-        
-        
+     
 
 ////      Mario Movement
 //      if (g.getKey() == UP_ARROW)
@@ -123,29 +119,62 @@ int main(int argc, char ** argv) {
             
         }
     }
-        
+
   
-        
-    // Draw platform for mario to walk on (i.e base)
-        
-    for (int col = 0; col < width + 1000; ++col)
-    {
-        for (int row = 560; row < height + 580; ++ row)
+        int help = 530;
+        int me = 506;
+
+    // Practice with the base as a platform
+        for (int col = 0; col < width + 1000; ++ col)
         {
-            g.plotPixel(col, row, 0, 0, 255);
+            for (int row = help; row < windowHeight; ++row)
+            {
+                g.plotPixel(col, row, 0, 0, 255);
+            }
+
         }
-    }
-        
-        if (PosY >= 560 && PosX >= 0 && PosX < 1000)
+//        for (int col = 550; col < width + 1000; ++ col)
+//        {
+//            for (int row = help; row < height + help; ++row)
+//            {
+//                g.plotPixel(col, row, 0, 0, 255);
+//            }
+//
+//        }
+        if (PosY == help)
         {
-            PosY = 520;
+            if (PosX >= 0 && PosX <= 1000)
+            {
+                PosY = me;
+            }
+
+//            if (PosX >= 550 && PosX <= 1000)
+//            {
+//                PosY = die;
+//            }
         }
+        
+        
+        
+        
+//     Draw platform for mario to walk on (i.e base)
+        
+//    for (int col = 0; col < width + 1000; ++col)
+//    {
+//        for (int row = base; row < windowHeight; ++ row)
+//        {
+//            g.plotPixel(col, row, 0, 0, 255);
+//        }
+//    }
+//
+//        if (PosY >= base)
+//        {
+//            PosY = 526;
+//        }
+//
+//
         
 
-
-        
-        
-        
      // For the platforms on the row 300
     for (int col = 800; col < width + 1000; ++col)
     {
@@ -155,13 +184,14 @@ int main(int argc, char ** argv) {
 
         }
     }
-        
-        if (PosY == middle && PosX >= 800 && PosX <= 1000)
+        if (PosY == middle)
         {
-            PosY = 276;
+            if (PosX >= 800 && PosX <= 1000)
+            {
+                      PosY = nMY;
+            }
         }
-   
-       
+        
         
     for (int col = 0; col < width + 200; ++col)
     {
@@ -172,11 +202,13 @@ int main(int argc, char ** argv) {
         }
     }
         
-        if (PosY == middle && PosX <= 200 && PosX >= 0)
+        if (PosY == middle)
         {
-            PosY = 276;
+            if (PosX <= 200 && PosX >= 0)
+            {
+                PosY = nMY;
+            }
         }
-        
 
     
     // For the platform directly in the middle
@@ -189,17 +221,19 @@ int main(int argc, char ** argv) {
             }
         }
         
-        if (PosY == tMiddle && PosX <= 700 && PosX >= 300)
+        if (PosY == tMiddle)
         {
-            PosY = 246;
+            if (PosX <= 700 && PosX >= 300)
+            {
+                      PosY = nTM;
+            }
         }
-
+        
       
         
-   
+    //For the platforms on the row 450
         
-        
-   // For the platforms on the row 450
+    // for the row on the right
     for (int col = 600; col < width + 1000; ++col)
         {
             for (int row = NearBottom; row < height + NearBottom; ++row)
@@ -209,27 +243,49 @@ int main(int argc, char ** argv) {
             }
         }
 
-        
-        if (PosY == NearBottom && PosX <= 1000 && PosX >= 600)
+        if (PosY == NearBottom)
         {
-            PosY = 426;
+            if(PosX <= 1000 && PosX >= 600)
+            {
+                PosY = nNB;
+            }
         }
 
+    // Row on the left
     for (int col = 0; col < width + 400; ++col)
         {
             for (int row = NearBottom; row < height + NearBottom; ++row)
             {
                 g.plotPixel (col, row, 0, 0, 255);
-                
 
             }
         }
 
-        if (PosY == NearBottom && PosX <= 400 && PosX >= 0)
+        if (PosY == NearBottom)
         {
-            PosY = 426;
+            if (PosX <= 400 && PosX >= 0)
+            {
+                PosY = nNB;
+            }
         }
-   
+
+
+    // Dot in the middle for the pow box
+    for (int col = 480; col < width + 510; ++col)
+    {
+        for (int row = NearBottom; row < height + NearBottom; ++row)
+        {
+            g.plotPixel (col, row, 0, 0, 255);
+        }
+    }
+        if (PosY == NearBottom)
+        {
+            if(PosX >= 480 && PosX <= 510)
+            {
+                PosY = nNB;
+            }
+        }
+
 
         
     // For the top platforms (i.e row 150)
@@ -241,13 +297,17 @@ int main(int argc, char ** argv) {
                 
             }
         }
-        if (PosY == top && PosX <= 400 && PosX >= 0)
+        
+        if (PosY == top)
         {
-            PosY = 126;
+            if(PosX <= 400 && PosX >= 0)
+            {
+                PosY = nT;
+            }
         }
 
 
-
+    // For the row on the right
     for (int col = 600; col < width + 1000; ++col)
         {
             for (int row = top; row < height + top; ++row)
@@ -258,15 +318,17 @@ int main(int argc, char ** argv) {
             }
         }
         
-        if (PosY == top && PosX <= 1000 && PosX >= 600)
+        if (PosY == top)
         {
-            PosY = 126;
-        }
-        else if (PosY == 160 && PosX <= 1000 && PosX >= 600)
-        {
-            PosY = 170;
+            if (PosX <= 1000 && PosX >= 600)
+            {
+                PosY = nT;
+            }
         }
 
+        
+        
+        
     // Non-Playable characters
         
 
@@ -279,11 +341,7 @@ int main(int argc, char ** argv) {
 
         }
         
-        
-         mario.draw(g);
-        
-       
-        
+//         mario.draw(g);
     }
 //
 //
@@ -371,7 +429,3 @@ int main(int argc, char ** argv) {
 
 
 }
-
-
-
-
