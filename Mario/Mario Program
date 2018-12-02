@@ -1,10 +1,11 @@
 #include <iostream>
-#include "SDL_Plotter.h"
 #include <iomanip>
 #include <cstdlib>
-#include "player.h"
+#include "SDL_Plotter.h"
+#include "mario.h"
 
 using namespace std;
+
 
 // SDL plotter dimensions
 const int windowHeight = 550;
@@ -12,6 +13,7 @@ const int windowWidth = 1000;
 
 int width;
 int height;
+
 
 // Connect code with SDL Plotter
 SDL_Plotter g(windowHeight, windowWidth);
