@@ -1,0 +1,124 @@
+     
+    
+// sheridan
+
+//npc movement code
+
+/*
+npc will move to the right and then move
+to the left, it will also move
+*/
+
+
+/*
+	
+	
+	
+	
+This is the second version
+of the NPC code to be implemented
+for two npcs
+
+
+
+
+*/
+
+
+/*
+ the npc's must be within the coordinates
+ and the movement will just loop afterx the 
+ npc hits a coordinate
+ /*
+
+
+
+
+
+
+
+
+
+
+// platform on 450
+
+while(PosX <= 1000 && >= 600)
+
+{PosX = max(PosX + 3, windowWidth - width);
+
+if (PosX = 1000)
+{
+	{PosX = max(PosX - 3, windowWidth - width);
+
+}
+
+
+}
+
+
+
+
+
+// this for the jump, only on the middle platform
+
+if (PosX <700 && >= 300)
+
+{ 
+
+
+PosY = min (PosY + 3 , windowHeight - height);
+
+}
+
+
+
+
+
+
+
+
+/*
+this is movemwnt code for npc on 
+middle platform
+*/
+
+while(PosX <= 700 && >= 300)
+
+{PosX = max(PosX + 3, windowWidth - width);
+
+if (posx = 700)
+{
+	
+	{PosX = max(PosX - 3, windowWidth - width);
+
+	
+	
+	
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+     
+     
+     
+     
